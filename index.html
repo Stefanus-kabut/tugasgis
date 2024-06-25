@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Peta Sebaran SMP di Kecamatan Miomafo Barat</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Link to Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+
+    <style>
+        body {
+            display: flex;
+        }
+        #map {
+            height: 600px;
+            width: 70%;
+        }
+        #info {
+            padding: 20px;
+            width: 30%;
+        }
+
+        .leaflet-popup-content img {
+            max-width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="map"></div>
+    <div id="info">
+        <h2>Kelompok 5</h2>
+        <ul>
+            <li>Angelicha Apriliani Diane Blaang (51220101)</li>
+            <li>Maria Marsela Seran (51220081)</li>
+            <li>Dorotia Mariance Kono (51220034)</li>
+            <li>Valentina Sela (51220086)</li>
+        </ul>
+    </div>
+
+    <!-- Link to Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+
+    <script>
+        // Inisialisasi peta
+        var map = L.map('map').setView([-9.5576501, 124.2307827], 12);
+
+        // Menambahkan layer peta dari OpenStreetMap
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Data koordinat SMP dengan foto
+        var smpLocations = [
+            { "name": "SMP NEGERI 1 MIOMAFO BARAT", "lat": -9.5576501, "lng": 124.2307827, "img": "foto/SMPN 1 MIOMAFFO BARAT.jpg" },
+            { "name": "SMP SATAP NEGERI NOEBESI", "lat": -9.5412932, "lng": 124.1550779, "img": "foto/SMP SATAP NEGERI NOEBESI.jpg" },
+            { "name": "SMP GITA SURYA EBAN", "lat": -9.5412932, "lng": 124.1550779, "img": "foto/SMP GITASURYA EBAN.jpg" },
+            { "name": "SMP Satap Negeri Fatunisuan", "lat": -9.5482696, "lng": 124.2763585, "img": "foto/SMP SATAP NEGERI FATUNISUAN.jpg" }
+        ];
+
+        // Menambahkan marker untuk setiap SMP dengan foto
+        smpLocations.forEach(function (smp) {
+            L.marker([smp.lat, smp.lng]).addTo(map)
+                .bindPopup("<b>" + smp.name + "</b><br><img src='" + smp.img + "' alt='" + smp.name + "'><br>Lat: " + smp.lat + "<br>Lng: " + smp.lng);
+        });
+    </script>
+</body>
+
+</html>
